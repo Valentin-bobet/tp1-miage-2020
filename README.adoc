@@ -5,7 +5,7 @@ NOTE: TP de deux slots de 1h20
 ## Nom des étudiants de ce binôme 
 WARNING: NE PAS OUBLIER DE MENTIONNER LES DEUX NOMS !
 
-#XXX# et #YYY#
+#MESNAGE Matthieu# et #BOBET Valentin#
 
 Commentaires éventuels des étudiants : #XXXXXX#
 
@@ -49,9 +49,15 @@ _Temps estimé : 1 h_
 
 IMPORTANT: [Question]  Le code est-il structuré en couches ? Imaginez un projet d'entreprise constitué de centaines de classes ainsi structuré : que risque-t-il d'arriver ?
 
+Le projet n'est pas structuré en couches. Dans le cadre d'un projet d'entreprise, cette structure pourrait devenir vite illisible et difficilement maintenable.
+
 IMPORTANT: [Question]  Que se passe-t-il si l'on renomme une colonne de la base de donnée ?
 
+Il faudra vérifier la concordance entre les attributs indiqués dans l'application et eventuellement mettre à jour le mapping manuellement pour éviter des erreurs. 
+
 IMPORTANT: [Question]  Où se trouve le code métier (voir la règle de gestion RG1) ? cette règle est-elle facilement testable par un test unitaire ? 
+
+Le code métier se trouve dans le controlleur. Il n'est pas testable avec un test unitaire car la fonction utilise les attributs d'un autre objet. Cette fonction devrait être présente dans l'objet concerné.
 
 * Lancer une base PostgreSQL en Docker :
 ```bash
@@ -59,7 +65,18 @@ docker run --rm -it -e POSTGRES_PASSWORD=password -p 5432:5432 postgres
 ```
 IMPORTANT: [Question]  Expliquer cette ligne de commande (y compris les options utilisées)
 
+docker run permet de lancer une image docker.
+l'option --rm permet de supprimer le conteneur si celui-ci existe déjà
+l'option -it permet d'écrire et recevoir les logs de la base directement sur le terminal
+-e POSTGRES_PASSWORD=password permet de set la variable d'environnement password pour se connecter à la base.
+-p permet de publier sur un certain port de l'hôte.
+postgres nom de l'image.
+
 IMPORTANT: [Question]  Lancer les commandes `docker ps` et `ps -eaf | grep postgres`, à quoi correspondent les lignes affichées ? Que remarquez vous ?
+
+La commande docker ps permet de voir le statut du conteneur docker, avec son id, l'image à partir de laquelle il est crée ainsi que la durée depuis laquelle le conteneur est crée. Il affiche aussi la durée pendant laquelle le conteneur à tourné.
+
+La seconde commande indique toutes les actions effectuées sur le conteneur docker.
 
 * Compléter le code manquant dans la méthode `TodoListController.createTodoItem()`
 
